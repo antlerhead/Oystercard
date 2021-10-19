@@ -42,6 +42,12 @@ describe '#top_up' do
       oystercard.touch_in
       expect(oystercard.in_journey?).to eq(true)
     end
+
+    it 'touch out' do
+      oystercard.touch_in
+      oystercard.touch_out
+      expect(oystercard).not_to be_in_journey
+    end
   end
 end
 end
