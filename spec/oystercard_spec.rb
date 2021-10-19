@@ -32,7 +32,7 @@ describe '#top_up' do
   describe 'Journey' do
     it 'starts not in journey' do
       oystercard = Oystercard.new
-      expect(oystercard).not_to be_journey
+      expect(oystercard).not_to be_in_journey
       # if touch in q journey is true
       # touch out eq journey false
     end
@@ -40,7 +40,7 @@ describe '#top_up' do
     it 'touch in' do
       # oystercard = Oystercard.new
       oystercard.touch_in
-      expect(oystercard.touch_in).to be_journey
+      expect(oystercard.in_journey?).to eq(true)
     end
   end
 end
