@@ -29,4 +29,25 @@ it 'raises an error if top_up takes balance beyond limit' do
   expect{ oystercard.top_up 100}.to raise_error 'Maximum limit exceeded'
 end 
 
+# In order to pay for my journey
+# As a customer
+# I need my fare deducted from my card
+
+it 'deducts money when fare is paid' do
+  oystercard = Oystercard.new
+  expect(oystercard).to respond_to(:deduct).with(1).argument
+end
+
+# In order to get through the barriers.
+# As a customer
+# I need to touch in and out.
+
+it 'starts not in journey' do
+  oystercard = Oystercard.new
+  expect(oystercard).not_to be_journey
+  # if touch in q journey is true
+  # touch out eq journey false
+end
+
+
 end 
