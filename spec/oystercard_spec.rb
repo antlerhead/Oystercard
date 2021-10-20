@@ -39,16 +39,26 @@ describe '#top_up' do
 
     it 'touch in' do
       # oystercard = Oystercard.new
+      oystercard.top_up(5)
       oystercard.touch_in
       expect(oystercard.in_journey?).to eq(true)
     end
 
     it 'touch out' do
+      oystercard.top_up(5)
       oystercard.touch_in
       oystercard.touch_out
       expect(oystercard).not_to be_in_journey
     end
+
+    it 'to raise error if balace is less than 1' do
+      oystercard.top_up(0)
+      # oystercard.touch_in
+      expect { oystercard.touch_in.balance < MINIMUM_BALANCE }.to raise_error 'Not enough funds'
+
+    end
   end
+
 end
 end
 
