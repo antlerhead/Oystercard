@@ -1,6 +1,6 @@
 class Oystercard
 
-  attr_reader :balance
+  attr_reader :balance, :minimum_fare
 
   DEFAULT_VALUE = 0
   MAXIMUM_LIMIT = 90
@@ -9,6 +9,7 @@ class Oystercard
   def initialize(balance = DEFAULT_VALUE)
     @balance = balance
     @in_journey = false
+    @minimum_fare = 1
   end 
 
   def top_up(credit)
@@ -19,6 +20,7 @@ class Oystercard
   def deduct(pay_out)
   #   # fail "Maximum limit" + MAXIMUM_LIMIT.to_s + "exceeded" if @balance >= MAXIMUM_LIMIT
     @balance -= pay_out 
+
   end 
 
   def in_journey?
@@ -34,6 +36,12 @@ class Oystercard
 
   def touch_out
     @in_journey = false
+    deduct(@minimum_fare)
   end
+
+  # def minimum_fare
+
+  # end
+
 
 end 

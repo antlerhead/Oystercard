@@ -57,6 +57,16 @@ describe '#top_up' do
       expect { oystercard.touch_in.balance < MINIMUM_BALANCE }.to raise_error 'Not enough funds'
 
     end
+
+#     In order to pay for my journey
+# As a customer
+# When my journey is complete, I need the correct amount deducted from my card
+    it 'deduct amount minimum when tap out' do
+      oystercard.top_up(5)
+      expect {oystercard.touch_out}.to change{oystercard.balance}.by(-oystercard.minimum_fare)
+    end
+
+
   end
 
 end
